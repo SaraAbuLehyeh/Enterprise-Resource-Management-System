@@ -131,10 +131,3 @@ Unit tests are located in the `ERMS.Tests` project and utilize xUnit and Moq. To
 *   Or run `dotnet test` in the solution directory from the command line.
 *   Current Code Coverage: Approximately [Your Current Percentage]%. [Add brief note as per Proposal].
 
-## [Optional] Reporting
-
-Reports [List reports] are available via [Describe how to access - SSRS Portal URL, link within app?]. Requires setup of [SSRS / Report Builder] and configuration of the report server connection.
-
-## [Optional] Deployment
-
-[Add notes on deploying the application, focusing on configuring the production environment, database connection strings, and secure JWT secret management using Azure Key Vault, Environment Variables, or similar.]
