@@ -1,0 +1,49 @@
+﻿@model ERMS.Models.ProjectTask
+
+@{
+    ViewData["Title"] = "Task Details";
+}
+
+<h1>Task Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">Task Name</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.TaskName)</dd>
+
+        <dt class="col-sm-3">Description</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Description)</dd>
+
+        <dt class="col-sm-3">Project</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Project.ProjectName)</dd>
+
+        <dt class="col-sm-3">Assignee</dt>
+        <dd class="col-sm-9">
+            @if (Model.Assignee != null)
+            {
+                @($"{Model.Assignee.FirstName} {Model.Assignee.LastName} ({Model.Assignee.Email})")
+            }
+            else
+            {
+                <span>Not Assigned</span>
+            }
+        </dd>
+
+        <dt class="col-sm-3">Due Date</dt>
+        <dd class="col-sm-9">@Model.DueDate.ToShortDateString()</dd>
+
+        <dt class="col-sm-3">Priority</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Priority)</dd>
+
+        <dt class="col-sm-3">Status</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Status)</dd>
+    </dl>
+</div>
+<div>
+    @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+    {
+        <a asp-action="Edit" asp-route-id="@Model.TaskID" class="btn btn-warning">Edit</a>
+    }
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

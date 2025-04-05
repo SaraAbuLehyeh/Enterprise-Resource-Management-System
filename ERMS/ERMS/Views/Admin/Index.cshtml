@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<h1>Admin Actions</h1>
+<hr />
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+<div class="mb-3">
+    <p>Update status for tasks that are 'Not Started' and past their due date.</p>
+    <form asp-action="MarkOverdueTasks" method="post">
+        @Html.AntiForgeryToken() @* Important for security *@
+        <button type="submit" class="btn btn-warning">Mark Overdue Tasks Now</button>
+    </form>
+</div>
+
+<hr />
+<p><a asp-action="Users">Manage Users and Roles</a></p>

@@ -1,0 +1,39 @@
+﻿<!-- Views/Admin/EditUserRoles.cshtml -->
+@model ERMS.ViewModels.EditUserRolesViewModel
+
+@{
+    ViewData["Title"] = "Edit User Roles";
+}
+
+<h1>Edit Roles for @Model.UserName</h1>
+<p>Email: @Model.Email</p>
+
+<form asp-action="EditUserRoles" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="UserId" />
+    <input type="hidden" asp-for="UserName" />
+    <input type="hidden" asp-for="Email" />
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <h5>Manage User Roles</h5>
+        </div>
+        <div class="card-body">
+            @for (int i = 0; i < Model.Roles.Count; i++)
+            {
+                <div class="form-check mb-2">
+                    <input type="hidden" asp-for="@Model.Roles[i].RoleName" />
+                    <input class="form-check-input" type="checkbox" asp-for="@Model.Roles[i].IsSelected" />
+                    <label class="form-check-label" asp-for="@Model.Roles[i].IsSelected">
+                        @Model.Roles[i].RoleName
+                    </label>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a asp-action="Users" class="btn btn-secondary">Back to List</a>
+    </div>
+</form>

@@ -1,0 +1,41 @@
+﻿<!-- Views/Admin/Users.cshtml -->
+@model IEnumerable<ERMS.ViewModels.UserManagementViewModel>
+
+@{
+    ViewData["Title"] = "User Management";
+}
+
+<h1>User Management</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Roles</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FirstName @item.LastName</td>
+                <td>@item.Email</td>
+                <td>@item.Department</td>
+                <td>@string.Join(", ", item.Roles)</td>
+                <td>@(item.IsLocked ? "Locked" : "Active")</td>
+                <td>
+                    <a asp-action="EditUserRoles" asp-route-id="@item.UserId" class="btn btn-primary btn-sm">Edit Roles</a>
+                    <form asp-action="ToggleUserLock" asp-route-id="@item.UserId" method="post" style="display: inline;">
+                        <button type="submit" class="btn btn-@(item.IsLocked ? "success" : "warning") btn-sm">
+                            @(item.IsLocked ? "Unlock" : "Lock")
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

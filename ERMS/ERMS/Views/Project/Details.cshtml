@@ -1,0 +1,224 @@
+﻿@model ERMS.DTOs.ProjectDto // <-- Changed model type
+@{
+    ViewData["Title"] = "Project Details";
+}
+
+<h1>Project Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @* Use explicit name or create a view model with DisplayName attributes *@
+            Project Name
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.ProjectName)
+        </dd>
+        <dt class="col-sm-3">
+            Description
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-3">
+            Start Date
+        </dt>
+        <dd class="col-sm-9">
+            @Model.StartDate.ToShortDateString()
+        </dd>
+        <dt class="col-sm-3">
+            End Date
+        </dt>
+        <dd class="col-sm-9">
+            @(Model.EndDate.HasValue ? Model.EndDate.Value.ToShortDateString() : "Not set")
+        </dd>
+        <dt class="col-sm-3">
+            Project Manager
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.ManagerName) @* Use ManagerName from DTO *@
+            @* You could add ManagerID if needed: (@Html.DisplayFor(model => model.ManagerID)) *@
+        </dd>
+         <dt class="col-sm-3">
+            Task Count
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.TaskCount) @* Use TaskCount from DTO *@
+        </dd>
+    </dl>
+
+    @* --- Task List Section Removed/Modified --- *@
+    @* The ProjectDto doesn't contain the list of tasks directly anymore. *@
+    @* Option 1: Just show the count (already done above) *@
+
+    @* Option 2: Add a button/link to load tasks dynamically using JavaScript + API call *@
+    <h4>Tasks (@Model.TaskCount)</h4>
+    <div id="taskListPlaceholder">
+        <p>Loading tasks...</p>
+        @* JavaScript will populate this section by calling /api/TasksApi?projectId=... *@
+    </div>
+    @* Add a script section later to implement the JS call *@
+
+
+    @* Option 3: If absolutely needed server-side, the Controller would have to make *another* API call *
+    @*           using a hypothetical TaskApiClient to get tasks and pass them in ViewBag/ViewModel. (Not recommended) *@
+
+</div>
+<div>
+    @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+    {
+            <a asp-action="Edit" asp-route-id="@Model.ProjectID" class="btn btn-warning">Edit</a>
+    }
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+@section Scripts {
+        <script>
+            // Wait for the DOM to be fully loaded
+            document.addEventListener('DOMContentLoaded', function () {
+                // Get the project ID from the Model passed to the view
+                const projectId = @Model.ProjectID;
+                const taskListDiv = document.getElementById('taskListPlaceholder');
+
+                // Check if the placeholder div exists
+                if (!taskListDiv) {
+                    console.error('Task list placeholder element not found.');
+                    return;
+                }
+
+                // --- Function to fetch tasks using a provided token ---
+                function fetchTasksWithToken(token) {
+                     console.log("%cFetching tasks with JWT...", "color: blue;");
+                     taskListDiv.innerHTML = '<p><i class="fas fa-spinner fa-spin"></i> Loading tasks...</p>'; // Indicate loading
+
+                         fetch(`/api/TasksApi/project/${projectId}`, { // Uses API endpoint filtered by projectId
+                         method: 'GET',
+                         headers: {
+                             'Authorization': `Bearer ${token}`, // Use the provided JWT
+                             'Accept': 'application/json'
+                         }
+                     })
+                     .then(response => {
+                         if (response.status === 401) { throw new Error('Unauthorized'); } // JWT invalid/expired
+                         if (response.status === 403) { throw new Error('Forbidden'); }   // User role insufficient for API endpoint
+                         if (!response.ok) { throw new Error(`API Error: ${response.status}`); } // Other errors
+                         return response.json();
+                     })
+                     .then(tasks => {
+                         // Render the tasks table or "No tasks" message
+                         console.log("Received tasks data:", tasks);
+                         if (tasks && tasks.length > 0) {
+                             let tableHtml = '<table class="table table-sm table-striped"><thead><tr><th>Name</th><th>Assignee</th><th>Due Date</th><th>Priority</th><th>Status</th></tr></thead><tbody>';
+                             tasks.forEach(task => {
+                                 const dueDate = new Date(task.dueDate).toLocaleDateString();
+                                 const assigneeName = task.assigneeName || '<i class="text-muted">N/A</i>';
+                                 const taskName = escapeHtml(task.taskName);
+                                 const priority = escapeHtml(task.priority);
+                                 const status = escapeHtml(task.status);
+                                 tableHtml += `<tr><td>${taskName}</td><td>${assigneeName}</td><td>${dueDate}</td><td>${priority}</td><td>${status}</td></tr>`;
+                             });
+                             tableHtml += '</tbody></table>';
+                             taskListDiv.innerHTML = tableHtml;
+                         } else {
+                             taskListDiv.innerHTML = '<p>No tasks found for this project.</p>';
+                         }
+                     })
+                     .catch(error => {
+                         console.error('Error during task fetch/processing:', error);
+                         if (error.message === 'Unauthorized') {
+                             taskListDiv.innerHTML = '<p class="text-danger">Your API session may have expired. Please refresh the page to try getting a new token.</p>';
+                              // Clear potentially invalid token so next load attempts to get a new one
+                             sessionStorage.removeItem('jwtToken');
+                             sessionStorage.removeItem('tokenExpiration');
+                         } else if (error.message === 'Forbidden') {
+                             taskListDiv.innerHTML = '<p class="text-danger">You do not have permission to view these tasks via the API.</p>';
+                         } else {
+                             taskListDiv.innerHTML = '<p class="text-danger">An error occurred while loading tasks.</p>';
+                         }
+                     });
+                }
+
+                // --- Function to get JWT (if needed) and initiate task fetch ---
+                function getJwtAndFetchTasks() {
+                    let token = sessionStorage.getItem('jwtToken');
+                    const expiration = sessionStorage.getItem('tokenExpiration');
+                    let isTokenValid = false;
+
+                    // Check if token exists and is not expired (basic check)
+                    if (token && expiration && new Date(expiration) > new Date()) {
+                         isTokenValid = true;
+                    }
+
+                    if (isTokenValid) {
+                        // Use existing valid token from sessionStorage
+                        console.log("%cUsing existing valid token from sessionStorage.", "color: green;");
+                        fetchTasksWithToken(token);
+                    } else {
+                        // No valid token - Attempt to fetch a new one using the cookie
+                        console.log("%cNo valid token in sessionStorage. Attempting GET /api/Auth/get-my-token...", "color: orange;");
+                        taskListDiv.innerHTML = '<p><i class="fas fa-lock"></i> Authenticating for API access...</p>'; // Indicate auth attempt
+
+                        fetch('/api/Auth/get-my-token', { // This endpoint uses COOKIE authentication
+                            method: 'GET',
+                            headers: { 'Accept': 'application/json' }
+                             // NO 'Authorization: Bearer' header here!
+                        })
+                        .then(response => {
+                            if (response.status === 401) { // Cookie authentication failed
+                                 console.error('Cookie authentication failed (401 from /get-my-token). User likely not logged in via cookie.');
+                                 taskListDiv.innerHTML = '<p class="text-danger">You are not logged in. Please <a href="/Account/Login?returnUrl=' + encodeURIComponent(window.location.pathname + window.location.search) + '">log in</a>.</p>';
+                                 throw new Error('NotLoggedIn'); // Stop promise chain
+                            }
+                            if (!response.ok) { // Other server errors getting token
+                                console.error('Error fetching API token:', response.status);
+                                 taskListDiv.innerHTML = '<p class="text-danger">Could not obtain API access token.</p>';
+                                 throw new Error('TokenFetchError'); // Stop promise chain
+                            }
+                            return response.json(); // Parse the { token, expiration } response
+                        })
+                        .then(data => {
+                            // Got a new token from the server
+                            if (data.token) {
+                                console.log("%cNew token fetched via cookie auth. Storing and fetching tasks.", "color: green;");
+                                sessionStorage.setItem('jwtToken', data.token); // Store the NEW token
+                                if(data.expiration) sessionStorage.setItem('tokenExpiration', data.expiration);
+                                fetchTasksWithToken(data.token); // Fetch tasks with the NEW token
+                            } else {
+                                // Server responded OK but didn't provide a token? Should not happen with correct endpoint.
+                                console.error("Fetched token data is invalid:", data);
+                                 taskListDiv.innerHTML = '<p class="text-danger">Failed to obtain a valid API access token from server.</p>';
+                            }
+                        })
+                        .catch(error => {
+                            // Catch errors from fetch or .then blocks
+                            // Only log generic errors if specific messages weren't already displayed
+                            if (error.message !== 'NotLoggedIn' && error.message !== 'TokenFetchError') {
+                                console.error('Error in token fetch/storage process:', error);
+                                taskListDiv.innerHTML = '<p class="text-danger">An unexpected error occurred during API authentication.</p>';
+                            }
+                             // Specific messages for 401 or fetch failure are handled above
+                        });
+                    }
+                }
+
+                 // --- Simple HTML Escape helper ---
+                   // --- Simple HTML Escape helper ---
+                 function escapeHtml(unsafe) {
+                     if (unsafe === null || typeof unsafe === 'undefined') return ""; // Handle null/undefined
+                     return unsafe
+                          .toString() // Ensure it's a string
+                          .replace(/&/g, "&")
+                          .replace(/</g, "<")
+                          .replace(/>/g, ">")
+                          .replace(/'/g, "'"); 
+                 }
+
+
+                // --- Initial load when the page is ready ---
+                getJwtAndFetchTasks();
+
+            });
+        </script>
+}
+@* Add script section here if using Option 2 for loading tasks *@
+

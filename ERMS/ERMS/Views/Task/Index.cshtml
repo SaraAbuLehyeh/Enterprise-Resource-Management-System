@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ERMS.Models.ProjectTask>
+
+@{
+    ViewData["Title"] = "Tasks";
+}
+
+<h1>Tasks</h1>
+
+<p>
+    @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+    {
+        <a asp-action="Create" class="btn btn-primary">Create New</a>
+    }
+    <a asp-action="MyTasks" class="btn btn-info">My Tasks</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Task Name</th>
+            <th>Project</th>
+            <th>Assignee</th>
+            <th>Due Date</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.TaskName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Project.ProjectName)</td>
+                <td>@(item.Assignee != null ? $"{item.Assignee.FirstName} {item.Assignee.LastName}" : "Not Assigned")</td>
+                <td>@item.DueDate.ToShortDateString()</td>
+                <td>@Html.DisplayFor(modelItem => item.Priority)</td>
+                <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.TaskID" class="btn btn-info btn-sm">Details</a>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.TaskID" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.TaskID" class="btn btn-danger btn-sm">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

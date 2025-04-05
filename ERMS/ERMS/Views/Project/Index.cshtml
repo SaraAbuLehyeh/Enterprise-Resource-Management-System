@@ -1,0 +1,80 @@
+﻿@model IEnumerable<ERMS.DTOs.ProjectDto> // <-- Changed model type
+@{
+    ViewData["Title"] = "Projects";
+}
+
+<h1>Projects</h1>
+
+<p>
+    @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+    {
+            <a asp-action="Create" class="btn btn-primary">Create New</a>
+    }
+</p>
+
+@if (!Model.Any())
+{
+        <p>No projects found.</p>
+    @if (ViewBag.ErrorMessage != null)
+    {
+                <div class="alert alert-warning">@ViewBag.ErrorMessage</div>
+    }
+}
+else
+{
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                    @* Use explicit name or create a view model with DisplayName attributes *@
+                        Project Name
+                    </th>
+                    <th>
+                        Start Date
+                    </th>
+                    <th>
+                        End Date
+                    </th>
+                    <th>
+                        Manager
+                    </th>
+                     <th>
+                        Task Count
+                    </th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model) // item is now ProjectDto
+            {
+                        <tr>
+                            <td>
+                        @Html.DisplayFor(modelItem => item.ProjectName)
+                            </td>
+                            <td>
+                        @item.StartDate.ToShortDateString()
+                            </td>
+                            <td>
+                        @(item.EndDate.HasValue ? item.EndDate.Value.ToShortDateString() : "Not set")
+                            </td>
+                            <td>
+                        @Html.DisplayFor(modelItem => item.ManagerName) @* Use ManagerName from DTO *@
+                            </td>
+                            <td>
+                        @Html.DisplayFor(modelItem => item.TaskCount) @* Use TaskCount from DTO *@
+                            </td>
+                            <td>
+                        @* Links still use ProjectID which is present in the DTO *@
+                                <a asp-action="Details" asp-route-id="@item.ProjectID" class="btn btn-info btn-sm">Details</a>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                        {
+                                        <a asp-action="Edit" asp-route-id="@item.ProjectID" class="btn btn-warning btn-sm">Edit</a>
+                            // Delete button needs careful consideration if API is used for delete later
+                                        <a asp-action="Delete" asp-route-id="@item.ProjectID" class="btn btn-danger btn-sm">Delete</a>
+                        }
+                            </td>
+                        </tr>
+            }
+            </tbody>
+        </table>
+}

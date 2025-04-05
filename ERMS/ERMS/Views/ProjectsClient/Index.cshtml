@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ERMS.Models.Project>
+
+@{
+    ViewData["Title"] = "Projects (API)";
+}
+
+<h1>Projects (via API)</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Project Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Manager</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProjectName</td>
+                <td>@item.StartDate.ToShortDateString()</td>
+                <td>@(item.EndDate != null ? item.EndDate.Value.ToShortDateString() : "Not set")</td>
+                <td>@(item.Manager != null ? $"{item.Manager.FirstName} {item.Manager.LastName}" : "Not assigned")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.ProjectID" class="btn btn-info btn-sm">Details</a>
+                    <a asp-action="Edit" asp-route-id="@item.ProjectID" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.ProjectID" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

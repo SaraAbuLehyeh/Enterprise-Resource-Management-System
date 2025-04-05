@@ -1,0 +1,147 @@
+﻿@model IEnumerable<ERMS.Models.Project>
+
+<h2>Project Summary Report</h2>
+<div class="mb-3">
+    <a asp-action="ExportProjectSummaryPdf" class="btn btn-danger">
+        <i class="fas fa-file-pdf"></i> Export to PDF
+    </a>
+</div>
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4>Project Progress Chart</h4>
+            </div>
+            <div class="card-body">
+                <canvas id="projectChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4>Project Data</h4>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Project Name</th>
+                            <th>Manager</th>
+                            <th>Total Tasks</th>
+                            <th>Completed Tasks</th>
+                            <th>Progress</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var project in Model)
+                        {
+                            var totalTasks = project.Tasks.Count;
+                            var completedTasks = 0;
+                            foreach (var task in project.Tasks)
+                            {
+                                if (task.Status == "Completed")
+                                {
+                                    completedTasks++;
+                                }
+                            }
+                            var progress = totalTasks > 0 ? (completedTasks * 100 / totalTasks) : 0;
+
+                            <tr>
+                                <td>@project.ProjectName</td>
+                                <td>@(project.Manager != null ? $"{project.Manager.FirstName} {project.Manager.LastName}" : "Not Assigned")</td>
+                                <td>@totalTasks</td>
+                                <td>@completedTasks</td>
+                                <td>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: @progress%;"
+                                             aria-valuenow="@progress" aria-valuemin="0" aria-valuemax="100">
+                                            @progress%
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a asp-action="Details" asp-controller="Project" asp-route-id="@project.ProjectID" class="btn btn-info btn-sm">Details</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Prepare data for chart
+            var projectData = @Html.Raw(Json.Serialize(Model.Select(p => new
+            {
+                ProjectName = p.ProjectName,
+                TotalTasks = p.Tasks.Count,
+                CompletedTasks = p.Tasks.Count(t => t.Status == "Completed")
+            })));
+
+            // Render chart
+            var ctx = document.getElementById('projectChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: projectData.map(p => p.ProjectName),
+                    datasets: [
+                        {
+                            label: 'Total Tasks',
+                            data: projectData.map(p => p.TotalTasks),
+                            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Completed Tasks',
+                            data: projectData.map(p => p.CompletedTasks),
+                            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Tasks'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Projects'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Project Progress Overview',
+                            font: {
+                                size: 16
+                            }
+                        },
+                        legend: {
+                            position: 'top'
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+}

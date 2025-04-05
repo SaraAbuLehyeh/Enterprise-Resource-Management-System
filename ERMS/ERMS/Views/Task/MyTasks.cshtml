@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ERMS.Models.ProjectTask>
+
+@{
+    ViewData["Title"] = "My Tasks";
+}
+
+<h1>My Tasks</h1>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Task Name</th>
+                <th>Project</th>
+                <th>Due Date</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.TaskName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Project.ProjectName)</td>
+                    <td>@item.DueDate.ToShortDateString()</td>
+                    <td>@Html.DisplayFor(modelItem => item.Priority)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.TaskID" class="btn btn-info btn-sm">Details</a>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.TaskID" class="btn btn-warning btn-sm">Edit</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No tasks assigned to you.</p>
+}
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Back to All Tasks</a>
+</div>

@@ -1,0 +1,185 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">Dashboard</h1>
+    <p>Welcome to your ERMS dashboard. Here's an overview of your tasks and projects.</p>
+
+    <!-- Task Statistics Cards -->
+    <div class="row mb-4">
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-primary text-white mb-4">
+                <div class="card-body">
+                    <h2>@ViewBag.TotalTasks</h2>
+                    <p>Total Tasks</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-success text-white mb-4">
+                <div class="card-body">
+                    <h2>@ViewBag.CompletedTasks</h2>
+                    <p>Completed Tasks</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-warning text-white mb-4">
+                <div class="card-body">
+                    <h2>@ViewBag.InProgressTasks</h2>
+                    <p>In Progress</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-danger text-white mb-4">
+                <div class="card-body">
+                    <h2>@ViewBag.PendingTasks</h2>
+                    <p>Not Started</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upcoming Deadlines -->
+    <div class="row mb-4">
+        <div class="col-xl-12">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-calendar me-1"></i>
+                    Upcoming Deadlines
+                </div>
+                <div class="card-body">
+                    @if (ViewBag.UpcomingDeadlines.Count > 0)
+                    {
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Task</th>
+                                    <th>Project</th>
+                                    <th>Due Date</th>
+                                    <th>Priority</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var task in ViewBag.UpcomingDeadlines)
+                                {
+                                    <tr>
+                                        <td>@task.TaskName</td>
+                                        <td>@task.Project.ProjectName</td>
+                                        <td>@task.DueDate.ToShortDateString()</td>
+                                        <td>@task.Priority</td>
+                                        <td>@task.Status</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p>No upcoming deadlines in the next 7 days.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Manager/Admin Section -->
+    @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+    {
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-project-diagram me-1"></i>
+                        Project Overview
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-4">
+                            <div class="col-xl-6">
+                                <div class="card bg-info text-white mb-4">
+                                    <div class="card-body">
+                                        <h2>@ViewBag.TotalProjects</h2>
+                                        <p>Total Projects</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="card bg-secondary text-white mb-4">
+                                    <div class="card-body">
+                                        <h2>@ViewBag.ProjectsWithTasks</h2>
+                                        <p>Active Projects</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @if (ViewBag.Projects.Count > 0)
+                        {
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Project</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Total Tasks</th>
+                                        <th>Completed</th>
+                                        <th>Progress</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var project in ViewBag.Projects)
+                                    {
+                                        var totalTasks = project.Tasks.Count;
+                                        var completedTasks = 0;
+
+                                        foreach (var task in project.Tasks)
+                                        {
+                                            if (task.Status == "Completed")
+                                            {
+                                                completedTasks++;
+                                            }
+                                        }
+
+                                        var progress = totalTasks > 0 ? (completedTasks * 100 / totalTasks) : 0;
+
+                                        <tr>
+                                            <td>@project.ProjectName</td>
+                                            <td>@project.StartDate.ToShortDateString()</td>
+                                            <td>
+                                                @if (project.EndDate != null)
+                                                {
+                                                    @project.EndDate.ToShortDateString()
+                                                }
+                                                else
+                                                {
+                                                    <span>Not set</span>
+                                                }
+                                            </td>
+                                            <td>@totalTasks</td>
+                                            <td>@completedTasks</td>
+                                            <td>
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" style="width: @progress%;"
+                                                         aria-valuenow="@progress" aria-valuemin="0" aria-valuemax="100">
+                                                        @progress%
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        else
+                        {
+                            <p>No projects available.</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

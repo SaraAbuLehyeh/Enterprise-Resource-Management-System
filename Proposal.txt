@@ -1,0 +1,107 @@
+Proposal.txt by Sara Abdulheyh
+
+Project Title: Enterprise Resource Management System (ERMS) - Capstone Project
+
+Version: 1.0
+Date: April 4, 2025 (Please update with the current date)
+Author(s): [Your Name(s)]
+
+1. Introduction
+   -------------
+   This document outlines the proposal for the Enterprise Resource Management System (ERMS), a web-based application developed as a capstone project. ERMS aims to provide a centralized platform for managing key organizational resources: employees, projects, and tasks. The system is built using modern web technologies, including ASP.NET Core MVC, ASP.NET Core Web API, Entity Framework Core, SQL Server, and incorporates essential features like user authentication, role-based access control, RESTful API integration, and basic reporting concepts.
+
+2. Project Goals & Objectives
+   -------------------------
+   The primary goals of the ERMS project are:
+   *   To develop a functional full-stack web application demonstrating proficiency in the .NET Core ecosystem.
+   *   To implement secure user authentication and authorization using ASP.NET Core Identity with distinct roles (Admin, Manager, Employee).
+   *   To provide standard CRUD (Create, Read, Update, Delete) operations for managing Employee, Project, and Task data through both an MVC interface and a RESTful Web API.
+   *   To design and implement a normalized relational database schema using SQL Server and Entity Framework Core.
+   *   To create a secure REST API using JWT (JSON Web Token) authentication.
+   *   To demonstrate API consumption from a client application (implemented via client-side JavaScript within the MVC views).
+   *   To incorporate basic security best practices (CSRF protection, XSS mitigation considerations).
+   *   To implement foundational logging.
+   *   (Optional - Add if implementing) To utilize Stored Procedures for specific data operations.
+   *   (Optional - Add if implementing) To generate basic reports using SSRS or an alternative method.
+   *   (Optional - Add if implementing) To deploy the application to a hosting environment (e.g., Azure, IIS).
+
+3. Scope
+   ------
+   The scope of this project includes the following core modules and features:
+
+   *   **User Authentication & Authorization:**
+        *   User registration (potentially limited or admin-driven).
+        *   User login using email and password.
+        *   Implementation of Admin, Manager, and Employee roles.
+        *   Role-based access control restricting access to specific features and actions within both the MVC application and the API.
+   *   **Employee Management (via MVC and potentially API):**
+        *   Viewing a list of employees.
+        *   Viewing employee details (including department, hire date).
+        *   Creating, updating, and deleting employee records (typically restricted to Admin role).
+   *   **Project Management (via MVC and API):**
+        *   Viewing a list of projects (including manager name, task count).
+        *   Viewing project details.
+        *   Creating, updating, and deleting projects (restricted by role, e.g., Admin/Manager).
+        *   Assigning a manager (User) to a project.
+   *   **Task Management (via MVC and API):**
+        *   Viewing tasks associated with a project (loaded dynamically via API).
+        *   Viewing task details.
+        *   Creating, updating, and deleting tasks (restricted by role).
+        *   Assigning tasks to employees (Users).
+        *   Tracking task priority and status (e.g., "Not Started", "In Progress", "Completed").
+   *   **REST API:**
+        *   Endpoints for CRUD operations on Employees (Users), Projects, and Tasks.
+        *   JWT-based authentication and authorization securing the API endpoints.
+        *   An endpoint for authenticating users and issuing JWTs.
+        *   An endpoint for cookie-authenticated users to obtain a JWT for client-side API calls.
+   *   **API Consumption:**
+        *   Client-side JavaScript within MVC views calling the REST API endpoints (using fetch/axios) to dynamically load or manipulate data (e.g., loading tasks on the project details page). Authentication via JWT obtained through a dedicated endpoint.
+   *   **Database:**
+        *   SQL Server database with tables for Users (Identity), Roles (Identity), Departments, Projects, Tasks, and necessary relationship tables.
+        *   Entity Framework Core used as the ORM for data access.
+   *   **Security:**
+        *   Password hashing via ASP.NET Core Identity.
+        *   CSRF protection using AntiForgeryTokens in MVC forms.
+        *   JWT security for the API.
+        *   Basic considerations for preventing XSS (e.g., HTML encoding).
+        *   Parameterized queries via EF Core preventing SQL injection.
+   *   **Logging:**
+        *   Basic logging implemented using ILogger for diagnostics and error tracking.
+
+   **Out of Scope (Unless explicitly added):**
+   *   Advanced reporting features beyond basic SSRS demonstrations.
+   *   Real-time updates (e.g., using SignalR).
+   *   Complex workflow management.
+   *   Advanced UI/UX features beyond standard Bootstrap styling.
+   *   Detailed performance optimization.
+   *   Automated deployment pipelines (CI/CD).
+
+4. Technologies Used
+   ------------------
+   *   **Backend Framework:** ASP.NET Core 8 (or your version)
+   *   **Frontend:** ASP.NET Core MVC (Razor Views), HTML, CSS, JavaScript, Bootstrap
+   *   **API:** ASP.NET Core Web API
+   *   **Database:** Microsoft SQL Server (specify version if known)
+   *   **ORM:** Entity Framework Core 8 (or your version)
+   *   **Authentication:** ASP.NET Core Identity (Cookies), JWT Bearer Tokens
+   *   **IDE:** Visual Studio 2022 (or your version)
+   *   **Version Control:** Git, GitHub/GitLab (specify which)
+   *   **Testing:** xUnit/NUnit (specify which, if implementing)
+   *   **Reporting:** SSRS (if implementing)
+   *   **Logging:** Microsoft.Extensions.Logging (Built-in), Application Insights/NLog/Serilog (specify if implementing)
+   *   **Deployment:** Azure/AWS/IIS (specify target if known)
+
+5. Architecture Overview
+   --------------------
+   The application follows a standard ASP.NET Core structure combining MVC and Web API within a single project.
+   *   **Models:** Define database entities (User, Project, Task, Department) and ViewModels/DTOs.
+   *   **Views:** Razor views (.cshtml) for rendering the user interface, utilizing Bootstrap for styling. Client-side JavaScript interacts with the API for dynamic content.
+   *   **Controllers (MVC):** Handle browser requests, interact with DbContext/Services for data needed for views, handle form submissions (using Cookie authentication and AntiForgeryTokens).
+   *   **Controllers (API):** Expose RESTful endpoints (`/api/...`), handle API requests, interact with DbContext/UserManager, implement JWT authentication/authorization.
+   *   **Data Layer:** `ApplicationDbContext` using Entity Framework Core manages database interaction.
+   *   **Authentication:** ASP.NET Core Identity manages users, roles, and cookie authentication for the MVC part. JWT Bearer middleware validates tokens for API requests. An `AuthController` handles JWT issuance.
+   *   **Middleware:** Global Exception Handling middleware provides standardized API error responses.
+
+6. Conclusion
+   -----------
+   The ERMS project provides a comprehensive platform for managing essential organizational data. It serves as a practical application of core ASP.NET Core concepts, including MVC, Web API, Identity, EF Core, database design, security principles, and API integration, fulfilling the requirements of the capstone project.

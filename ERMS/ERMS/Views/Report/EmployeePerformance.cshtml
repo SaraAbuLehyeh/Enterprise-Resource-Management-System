@@ -1,0 +1,136 @@
+﻿@model IEnumerable<ERMS.Models.User>
+
+<h2>Employee Performance Report</h2>
+<div class="mb-3">
+    <a asp-action="ExportEmployeePerformancePdf" class="btn btn-danger">
+        <i class="fas fa-file-pdf"></i> Export to PDF
+    </a>
+</div>
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4>Employee Performance Chart</h4>
+            </div>
+            <div class="card-body">
+                <canvas id="employeeChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4>Employee Performance Data</h4>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Employee Name</th>
+                            <th>Department</th>
+                            <th>Total Tasks</th>
+                            <th>Completed Tasks</th>
+                            <th>Performance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var employee in Model)
+                        {
+                            var totalTasks = employee.AssignedTasks.Count;
+                            var completedTasks = employee.AssignedTasks.Count(t => t.Status == "Completed");
+                            var performance = totalTasks > 0 ? (completedTasks * 100 / totalTasks) : 0;
+
+                            <tr>
+                                <td>@employee.FirstName @employee.LastName</td>
+                                <td>@(employee.Department?.DepartmentName ?? "Not Assigned")</td>
+                                <td>@totalTasks</td>
+                                <td>@completedTasks</td>
+                                <td>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: @performance%;"
+                                             aria-valuenow="@performance" aria-valuemin="0" aria-valuemax="100">
+                                            @performance%
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Prepare data for chart
+            var employeeData = @Html.Raw(Json.Serialize(Model.Select(e => new
+            {
+                EmployeeName = $"{e.FirstName} {e.LastName}",
+                TotalTasks = e.AssignedTasks.Count,
+                CompletedTasks = e.AssignedTasks.Count(t => t.Status == "Completed")
+            })));
+
+            // Render chart
+            var ctx = document.getElementById('employeeChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: employeeData.map(e => e.EmployeeName),
+                    datasets: [
+                        {
+                            label: 'Total Tasks',
+                            data: employeeData.map(e => e.TotalTasks),
+                            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Completed Tasks',
+                            data: employeeData.map(e => e.CompletedTasks),
+                            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Tasks'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Employees'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Employee Performance Overview',
+                            font: {
+                                size: 16
+                            }
+                        },
+                        legend: {
+                            position: 'top'
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+}
