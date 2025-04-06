@@ -1,9 +1,17 @@
-﻿<!-- Views/Account/AccessDenied.cshtml -->
-@{
+﻿@{
     ViewData["Title"] = "Access Denied";
 }
 
-<header>
-    <h1 class="text-danger">@ViewData["Title"]</h1>
-    <p class="text-danger">You do not have access to this resource.</p>
-</header>
+<div class="container text-center py-5">
+    <h1 class="display-4 text-danger mb-4">@ViewData["Title"]</h1>
+    <p class="lead text-danger">You do not have access to this resource.</p>
+
+    <div class="alert alert-warning mt-4" role="alert">
+        It seems you do not have the required permissions to view this page.
+    </div>
+
+    <div class="mt-4">
+        <a href="/" class="btn btn-primary btn-lg">Return to Home</a>
+        <a href="javascript:history.back()" class="btn btn-secondary btn-lg">Go Back</a>
+    </div>
+</div>

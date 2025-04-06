@@ -145,3 +145,93 @@
 2025-04-05 21:10:56.6356 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
 2025-04-05 21:10:56.6356 Info Configuration initialized.
 2025-04-05 21:10:57.3313 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 08:29:31.6304 Info Registered target NLog.Targets.ConsoleTarget(Name=consoleTarget)
+2025-04-06 08:29:31.7885 Info Registered target NLog.Targets.FileTarget(Name=fileTarget)
+2025-04-06 08:29:31.7885 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-04-06 08:29:31.9001 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 08:29:31.9288 Info Configuration initialized.
+2025-04-06 08:29:33.1642 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 08:39:53.4616 Info Registered target NLog.Targets.ConsoleTarget(Name=consoleTarget)
+2025-04-06 08:39:53.5208 Info Registered target NLog.Targets.FileTarget(Name=fileTarget)
+2025-04-06 08:39:53.5208 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-04-06 08:39:53.5454 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 08:39:53.5548 Info Configuration initialized.
+2025-04-06 08:39:54.1385 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 08:40:34.2573 Info Registered target NLog.Targets.ConsoleTarget(Name=consoleTarget)
+2025-04-06 08:40:34.3146 Info Registered target NLog.Targets.FileTarget(Name=fileTarget)
+2025-04-06 08:40:34.3146 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-04-06 08:40:34.3394 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 08:40:34.3496 Info Configuration initialized.
+2025-04-06 08:40:35.2033 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 08:46:51.0807 Info Registered target NLog.Targets.ConsoleTarget(Name=consoleTarget)
+2025-04-06 08:46:51.1290 Info Registered target NLog.Targets.FileTarget(Name=fileTarget)
+2025-04-06 08:46:51.1290 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-04-06 08:46:51.1572 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 08:46:51.1717 Info Configuration initialized.
+2025-04-06 08:46:52.3057 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 08:48:02.7100 Info Registered target NLog.Targets.ConsoleTarget(Name=consoleTarget)
+2025-04-06 08:48:02.7579 Info Registered target NLog.Targets.FileTarget(Name=fileTarget)
+2025-04-06 08:48:02.7630 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-04-06 08:48:02.7876 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 08:48:02.7876 Info Configuration initialized.
+2025-04-06 08:48:03.2834 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 08:49:47.2703 Info Registered target NLog.Targets.ConsoleTarget(Name=consoleTarget)
+2025-04-06 08:49:47.4802 Info Registered target NLog.Targets.FileTarget(Name=fileTarget)
+2025-04-06 08:49:47.4928 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-04-06 08:49:47.5664 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 08:49:47.5768 Info Configuration initialized.
+2025-04-06 08:49:48.2618 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 08:52:10.0601 Info Registered target NLog.Targets.ConsoleTarget(Name=consoleTarget)
+2025-04-06 08:52:10.0790 Info Registered target NLog.Targets.FileTarget(Name=fileTarget)
+2025-04-06 08:52:10.0846 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-04-06 08:52:10.0846 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 08:52:10.1038 Info Configuration initialized.
+2025-04-06 08:52:10.3359 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 08:52:17.8539 Info Registered target NLog.Targets.ConsoleTarget(Name=consoleTarget)
+2025-04-06 08:52:17.8925 Info Registered target NLog.Targets.FileTarget(Name=fileTarget)
+2025-04-06 08:52:17.8925 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-04-06 08:52:17.9232 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 08:52:17.9232 Info Configuration initialized.
+2025-04-06 08:52:18.8249 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 08:54:25.0484 Info Registered target NLog.Targets.ConsoleTarget(Name=consoleTarget)
+2025-04-06 08:54:25.1668 Info Registered target NLog.Targets.FileTarget(Name=fileTarget)
+2025-04-06 08:54:25.1733 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-04-06 08:54:25.3944 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 08:54:25.4063 Info Configuration initialized.
+2025-04-06 08:54:26.0551 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 08:57:10.3739 Info Registered target NLog.Targets.ConsoleTarget(Name=consoleTarget)
+2025-04-06 08:57:10.5120 Info Registered target NLog.Targets.FileTarget(Name=fileTarget)
+2025-04-06 08:57:10.5120 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-04-06 08:57:10.5615 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 08:57:10.5615 Info Configuration initialized.
+2025-04-06 08:57:11.2326 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 09:00:04.8515 Info Registered target NLog.Targets.ConsoleTarget(Name=consoleTarget)
+2025-04-06 09:00:04.8907 Info Registered target NLog.Targets.FileTarget(Name=fileTarget)
+2025-04-06 09:00:04.8907 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-04-06 09:00:04.9469 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 09:00:04.9637 Info Configuration initialized.
+2025-04-06 09:00:05.8524 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 09:01:58.6029 Info Registered target NLog.Targets.ConsoleTarget(Name=consoleTarget)
+2025-04-06 09:01:58.6925 Info Registered target NLog.Targets.FileTarget(Name=fileTarget)
+2025-04-06 09:01:58.7032 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-04-06 09:01:58.7800 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 09:01:58.7800 Info Configuration initialized.
+2025-04-06 09:01:59.6421 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 09:03:30.5124 Info Registered target NLog.Targets.ConsoleTarget(Name=consoleTarget)
+2025-04-06 09:03:30.6362 Info Registered target NLog.Targets.FileTarget(Name=fileTarget)
+2025-04-06 09:03:30.6497 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-04-06 09:03:30.7022 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 09:03:30.7229 Info Configuration initialized.
+2025-04-06 09:03:31.3920 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 09:03:46.0352 Info Registered target NLog.Targets.ConsoleTarget(Name=consoleTarget)
+2025-04-06 09:03:46.0669 Info Registered target NLog.Targets.FileTarget(Name=fileTarget)
+2025-04-06 09:03:46.0669 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-04-06 09:03:46.1169 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 09:03:46.1259 Info Configuration initialized.
+2025-04-06 09:03:46.6477 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 09:06:06.6339 Info Registered target NLog.Targets.ConsoleTarget(Name=consoleTarget)
+2025-04-06 09:06:06.6711 Info Registered target NLog.Targets.FileTarget(Name=fileTarget)
+2025-04-06 09:06:06.6711 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-04-06 09:06:06.6954 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 09:06:06.7046 Info Configuration initialized.
+2025-04-06 09:06:07.4385 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config

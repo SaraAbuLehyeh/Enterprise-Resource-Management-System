@@ -60,7 +60,7 @@ namespace ERMS.Controllers
         [ValidateAntiForgeryToken] // Protect against CSRF
         public async Task<IActionResult> Login(LoginViewModel model, string? returnUrl = null) // Use nullable reference type
         {
-            returnUrl ??= Url.Content("~/"); // Default to home page if returnUrl is null or empty
+            returnUrl ??= Url.Content("~/Dashboard"); // Default to home page if returnUrl is null or empty
 
             if (ModelState.IsValid)
             {

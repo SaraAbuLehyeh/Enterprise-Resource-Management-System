@@ -1,5 +1,150 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Welcome to ERMS";
+    // Define some colors or rely on Bootstrap theme defaults
+    string primaryColorHex = "#5B69A6"; // Example: Softer Indigo/Blue
+    string bodyBgColor = "#ffffff"; // Use white or very light grey for public page
+    string featureIconColor = primaryColorHex; // Use primary for feature icons
 }
+<style>
+    body {
+        background-color: @bodyBgColor;
+    }
+
+    .hero-section {
+        background: linear-gradient(to right, rgba(91, 105, 166, 0.9), rgba(52, 73, 94, 0.85)), url('/images/background.jpg'); /* Add a suitable background image path or remove url() */
+        background-size: cover;
+        background-position: center center;
+        color: white;
+        padding: 6rem 1rem;
+        text-align: center;
+        margin-bottom: 3rem;
+        border-bottom: 5px solid @primaryColorHex;
+    }
+
+        .hero-section h1 {
+            font-weight: 300;
+            font-size: 3.5rem;
+        }
+
+        .hero-section p.lead {
+            font-weight: 400;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2rem;
+        }
+
+    .feature-card {
+        border: none;
+        transition: transform 0.2s ease-in-out;
+        background-color: #fff;
+        border-radius: 0.5rem;
+    }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: @featureIconColor;
+        }
+
+        .feature-card h4 {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #343a40;
+        }
+
+        .feature-card p {
+            color: #6c757d;
+            font-size: 0.95rem;
+        }
+
+    .btn-primary-custom {
+        background-color: @primaryColorHex;
+        border-color: @primaryColorHex;
+        padding: 0.75rem 1.5rem;
+        font-size: 1.1rem;
+    }
+
+        .btn-primary-custom:hover {
+            background-color: darken( @primaryColorHex, 10%);
+            border-color: darken( @primaryColorHex, 10%);
+        }
+        /* Simple darken - may need preprocessor or JS */
+        /* Fallback basic darken if SASS/LESS isn't used - adjust lightness */
+        .btn-primary-custom:hover {
+            filter: brightness(90%);
+        }
+
+</style>
+
+<!-- Hero Section -->
+<div class="hero-section text-center">
+    <div class="container">
+        <h1 class="display-4 mb-3">Enterprise Resource Management System</h1>
+        <p class="lead mb-4">Streamline your employee, project, and task management with ERMS. Efficient, secure, and easy to use.</p>
+        <div>
+            @* Check if user is ALREADY authenticated (e.g., has cookie from previous session) *@
+            @if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                <a asp-controller="Dashboard" asp-action="Index" class="btn btn-lg btn-light me-2">Go to Dashboard <i class="fas fa-arrow-right ms-1"></i></a>
+                <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                    @Html.AntiForgeryToken() @* Important for security *@
+                    <button type="submit" class="btn btn-lg btn-outline-light">Log Out</button>
+                </form>
+            }
+            else
+            {
+                <a asp-controller="Account" asp-action="Login" class="btn btn-lg btn-light">Log In or Register <i class="fas fa-sign-in-alt ms-1"></i></a>
+            }
+        </div>
+    </div>
+</div>
 
 
+<!-- Features Section -->
+<div class="container my-5">
+    <h2 class="text-center mb-5 fw-light">Core Features</h2>
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div class="card feature-card shadow-sm h-100 text-center">
+                <div class="card-body p-4">
+                    <div class="icon"><i class="fas fa-users"></i></div>
+                    <h4>Employee Management</h4>
+                    <p>Maintain comprehensive employee records, roles, and department assignments efficiently.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card feature-card shadow-sm h-100 text-center">
+                <div class="card-body p-4">
+                    <div class="icon"><i class="fas fa-project-diagram"></i></div>
+                    <h4>Project Tracking</h4>
+                    <p>Oversee project lifecycles, assign managers, and monitor overall progress status.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card feature-card shadow-sm h-100 text-center">
+                <div class="card-body p-4">
+                    <div class="icon"><i class="fas fa-tasks"></i></div>
+                    <h4>Task Management</h4>
+                    <p>Create, assign, and track tasks with priorities and statuses for clear accountability.</p>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- End Row -->
+</div> <!-- End Container -->
+
+@* Optional: Add other sections like "About Us", "Contact", etc. if desired *@
+
+@* Ensure Font Awesome is linked in _Layout.cshtml or add link here *@
