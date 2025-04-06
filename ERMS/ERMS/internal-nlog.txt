@@ -235,3 +235,15 @@
 2025-04-06 09:06:06.6954 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
 2025-04-06 09:06:06.7046 Info Configuration initialized.
 2025-04-06 09:06:07.4385 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 22:46:25.9684 Info Registered target NLog.Targets.ConsoleTarget(Name=consoleTarget)
+2025-04-06 22:46:26.0546 Info Registered target NLog.Targets.FileTarget(Name=fileTarget)
+2025-04-06 22:46:26.0700 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-04-06 22:46:26.1388 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 22:46:26.1705 Info Configuration initialized.
+2025-04-06 22:46:28.2915 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 22:53:24.9680 Info Registered target NLog.Targets.ConsoleTarget(Name=consoleTarget)
+2025-04-06 22:53:25.0146 Info Registered target NLog.Targets.FileTarget(Name=fileTarget)
+2025-04-06 22:53:25.0146 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-04-06 22:53:25.0415 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config
+2025-04-06 22:53:25.0415 Info Configuration initialized.
+2025-04-06 22:53:25.7064 Info Validating config: TargetNames=consoleTarget, fileTarget, ConfigItems=31, FilePath=C:\Users\Benzellat\Desktop\Enterprise-Resource-Management-System\Enterprise-Resource-Management-System\ERMS\ERMS\bin\Debug\net8.0\nlog.config

@@ -58,12 +58,11 @@ namespace ERMS.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("DepartmentName")] Department department)
         {
-            if (ModelState.IsValid)
-            {
+            
                 _context.Add(department);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
+            
             return View(department);
         }
 
